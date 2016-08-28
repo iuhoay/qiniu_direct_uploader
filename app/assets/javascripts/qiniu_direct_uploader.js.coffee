@@ -90,10 +90,8 @@ $.fn.QiniuUploader = (options) ->
             error:      ( xhr, status, error )  -> $uploadForm.trigger( 'ajax:error', [xhr, status, error] )
 
         data.context.remove() if data.context && settings.removeProgressBarWhenCompleted # remove progress bar
-        $uploadForm.trigger("qiniu_upload_complete", [postData])
-
         currentFiles.splice($.inArray(data, currentFiles), 1) # remove that element from the array
-        $uploadForm.trigger("qiniu_upload_complete", [postData]) unless currentFiles.length
+        $uploadForm.trigger("qiniu_upload_complete", [postData])
 
       fail: (e, data) ->
         content = buildCallbackData $uploadForm, data.files[0], data.result
